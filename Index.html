@@ -1,0 +1,2950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Kritika 🎀</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,body{
+    width:100%;
+    min-height:100%;
+}
+
+body{
+    min-height:100vh;
+    background:
+        radial-gradient(circle at 15% 10%,#ffe0ea 0%,transparent 30%),
+        radial-gradient(circle at 90% 90%,#f4cfdd 0%,transparent 35%),
+        #fff5f8;
+    font-family:'Poppins',sans-serif;
+    color:#573b46;
+    overflow-x:hidden;
+}
+
+
+/* =========================================
+   FLOATING HEARTS
+========================================= */
+
+.heart{
+    position:fixed;
+    bottom:-40px;
+    color:#c87594;
+    font-size:20px;
+    opacity:.35;
+    pointer-events:none;
+    z-index:2;
+    animation:floatHeart 9s linear infinite;
+}
+
+@keyframes floatHeart{
+    0%{
+        transform:translateY(0) rotate(0deg);
+        opacity:0;
+    }
+
+    15%{
+        opacity:.5;
+    }
+
+    100%{
+        transform:translateY(-115vh) rotate(360deg);
+        opacity:0;
+    }
+}
+
+
+/* =========================================
+   OPENING SCREEN
+========================================= */
+
+.opening{
+    position:fixed;
+    inset:0;
+    z-index:30;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+
+    background:
+        radial-gradient(circle at 20% 15%,#ffe3ec,transparent 34%),
+        radial-gradient(circle at 80% 85%,#f6d5e1,transparent 35%),
+        #fff8fa;
+
+    transition:opacity 1s ease,visibility 1s ease;
+}
+
+.opening.hide{
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+}
+
+.intro{
+    width:100%;
+    max-width:700px;
+    padding:25px;
+}
+
+.small{
+    font-size:10px;
+    letter-spacing:5px;
+    text-transform:uppercase;
+    color:#a36a7d;
+    margin-bottom:15px;
+}
+
+.intro h1{
+    font-family:'Cormorant Garamond',serif;
+    font-size:58px;
+    line-height:.92;
+    color:#875065;
+    margin-bottom:14px;
+}
+
+.intro p{
+    font-size:13px;
+    line-height:1.7;
+    color:#8b6975;
+}
+
+
+/* =========================================
+   CLOSED DIARY
+========================================= */
+
+.diary-stage{
+    width:260px;
+    height:350px;
+    margin:35px auto 25px;
+    position:relative;
+    perspective:1800px;
+    cursor:pointer;
+    transition:width 1s ease,height 1s ease;
+}
+
+.diary-stage.enlarged{
+    width:min(880px,92vw);
+    height:min(610px,72vh);
+}
+
+.diary{
+    width:100%;
+    height:100%;
+    position:relative;
+    transform-style:preserve-3d;
+}
+
+
+/* =========================================
+   CLOSED COVER
+========================================= */
+
+.diary-cover{
+    position:absolute;
+    inset:0;
+    z-index:20;
+
+    transform-origin:left center;
+    transform-style:preserve-3d;
+    backface-visibility:hidden;
+
+    border-radius:6px 13px 13px 6px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #d993aa 0%,
+            #e7aabd 35%,
+            #c87896 100%
+        );
+
+    box-shadow:
+        12px 18px 40px rgba(91,45,64,.3),
+        inset 5px 0 0 rgba(255,255,255,.1);
+
+    border:2px solid rgba(122,61,82,.35);
+
+    transition:
+        transform 1.5s cubic-bezier(.2,.75,.15,1);
+}
+
+.diary-cover::before{
+    content:"";
+    position:absolute;
+    inset:16px;
+    border:1px solid rgba(255,245,248,.55);
+    border-radius:5px 11px 11px 5px;
+}
+
+.diary-cover::after{
+    content:"";
+    position:absolute;
+    left:-9px;
+    top:9px;
+    bottom:9px;
+    width:9px;
+    border-radius:5px 0 0 5px;
+
+    background:
+        linear-gradient(
+            to right,
+            #a85d7b,
+            #d789a4,
+            #a85d7b
+        );
+}
+
+
+/* =========================================
+   COVER CONTENT
+========================================= */
+
+.cover-content{
+    position:absolute;
+    inset:0;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    padding:30px;
+    color:#fff7fa;
+}
+
+.cover-mini{
+    font-size:9px;
+    letter-spacing:5px;
+    text-transform:uppercase;
+    margin-bottom:25px;
+    opacity:.9;
+}
+
+.cover-title{
+    font-family:'Cormorant Garamond',serif;
+    font-size:48px;
+    line-height:.86;
+    text-align:center;
+}
+
+.cover-name{
+    margin-top:18px;
+    font-family:'Cormorant Garamond',serif;
+    font-size:29px;
+}
+
+.cover-date{
+    margin-top:18px;
+    font-size:10px;
+    letter-spacing:4px;
+}
+
+.cover-symbol{
+    margin-top:28px;
+    font-size:25px;
+}
+
+
+/* =========================================
+   REAL DIARY
+========================================= */
+
+.book-container{
+    display:none;
+    min-height:100vh;
+
+    padding:
+        35px
+        18px
+        25px;
+
+    align-items:center;
+    justify-content:center;
+}
+
+.book-container.show{
+    display:flex;
+}
+
+.book-area{
+    width:min(1000px,100%);
+}
+
+
+/* =========================================
+   DOUBLE PAGE DIARY
+========================================= */
+
+.book{
+    width:100%;
+    position:relative;
+
+    background:#e5d0bf;
+
+    border-radius:8px 14px 14px 8px;
+
+    box-shadow:
+        0 28px 70px rgba(80,45,55,.25);
+
+    border:1px solid #d2b7a4;
+
+    padding:10px;
+
+    overflow:hidden;
+}
+
+
+/* center spine */
+
+.book::before{
+    content:"";
+    position:absolute;
+
+    left:50%;
+    top:10px;
+    bottom:10px;
+
+    width:5px;
+
+    transform:translateX(-50%);
+
+    background:
+        linear-gradient(
+            to right,
+            rgba(100,65,55,.18),
+            rgba(255,255,255,.5),
+            rgba(100,65,55,.18)
+        );
+
+    z-index:20;
+
+    pointer-events:none;
+}
+
+
+/* =========================================
+   SPREAD
+========================================= */
+
+.spread{
+    position:relative;
+
+    width:100%;
+
+    min-height:610px;
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    background:#fffaf1;
+
+    border-radius:5px 10px 10px 5px;
+
+    overflow:hidden;
+
+    box-shadow:
+        inset 0 0 30px rgba(128,79,61,.08);
+}
+
+
+/* paper texture */
+
+.spread::after{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    pointer-events:none;
+
+    background:
+        repeating-linear-gradient(
+            0deg,
+            rgba(130,90,70,.018) 0px,
+            rgba(130,90,70,.018) 1px,
+            transparent 1px,
+            transparent 4px
+        );
+
+    z-index:10;
+}
+
+
+/* =========================================
+   PAGES
+========================================= */
+
+.diary-page{
+    position:relative;
+
+    min-width:0;
+
+    padding:
+        48px
+        45px
+        70px;
+
+    background:#fffaf1;
+
+    overflow-y:auto;
+
+    color:#66515a;
+}
+
+.left-page{
+    border-right:1px solid #dbc5b5;
+
+    box-shadow:
+        inset -15px 0 25px rgba(100,60,50,.035);
+}
+
+.right-page{
+    box-shadow:
+        inset 15px 0 25px rgba(100,60,50,.035);
+}
+
+
+/* =========================================
+   PAGE TURN OVERLAY
+========================================= */
+
+.flip-page{
+    position:absolute;
+
+    top:0;
+    right:0;
+
+    width:50%;
+    height:100%;
+
+    background:#fffaf1;
+
+    z-index:15;
+
+    transform-origin:left center;
+
+    pointer-events:none;
+
+    box-shadow:
+        -8px 0 18px rgba(80,45,50,.15);
+
+    display:none;
+}
+
+.flip-page.active-next{
+    display:block;
+
+    animation:
+        flipNext
+        .85s
+        cubic-bezier(.25,.7,.2,1)
+        forwards;
+}
+
+.flip-page.active-back{
+    display:block;
+    left:0;
+    right:auto;
+
+    transform-origin:right center;
+
+    animation:
+        flipBack
+        .85s
+        cubic-bezier(.25,.7,.2,1)
+        forwards;
+}
+
+@keyframes flipNext{
+    0%{
+        transform:rotateY(0deg);
+        box-shadow:-8px 0 18px rgba(80,45,50,.18);
+    }
+
+    100%{
+        transform:rotateY(-180deg);
+        box-shadow:8px 0 25px rgba(80,45,50,.05);
+    }
+}
+
+@keyframes flipBack{
+    0%{
+        transform:rotateY(0deg);
+        box-shadow:8px 0 18px rgba(80,45,50,.18);
+    }
+
+    100%{
+        transform:rotateY(180deg);
+        box-shadow:-8px 0 25px rgba(80,45,50,.05);
+    }
+}
+
+
+/* =========================================
+   CONTENT TYPOGRAPHY
+========================================= */
+
+.page-number{
+    text-align:center;
+
+    font-size:9px;
+
+    letter-spacing:4px;
+
+    color:#aa7b87;
+
+    margin-bottom:22px;
+}
+
+.diary-page h2{
+    font-family:'Cormorant Garamond',serif;
+
+    font-size:43px;
+
+    line-height:.95;
+
+    color:#7d4c5e;
+
+    text-align:center;
+
+    margin-bottom:22px;
+}
+
+.diary-page h3{
+    font-family:'Cormorant Garamond',serif;
+
+    font-size:29px;
+
+    color:#995b70;
+
+    margin:25px 0 10px;
+}
+
+.diary-page p{
+    font-size:13px;
+
+    line-height:1.85;
+
+    color:#66515a;
+
+    margin-bottom:12px;
+}
+
+.highlight{
+    color:#a0526c;
+    font-weight:600;
+}
+
+
+/* =========================================
+   PAGE ONE COVER STYLE
+========================================= */
+
+.first-page{
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+}
+
+.first-page .birthday{
+    font-size:11px;
+
+    letter-spacing:5px;
+
+    color:#a56d7d;
+}
+
+.first-page h2{
+    font-size:62px;
+
+    margin:
+        15px
+        0
+        5px;
+}
+
+.first-page .name{
+    font-family:'Cormorant Garamond',serif;
+
+    font-size:33px;
+
+    color:#9e5970;
+}
+
+.quote{
+    margin-top:25px;
+
+    font-family:'Cormorant Garamond',serif;
+
+    font-size:20px;
+
+    line-height:1.5;
+
+    color:#7c5c67;
+
+    font-style:italic;
+}
+
+.cover-bottom{
+    margin-top:30px;
+
+    font-size:26px;
+}
+
+
+/* =========================================
+   CARDS
+========================================= */
+
+.cards{
+    display:grid;
+
+    grid-template-columns:1fr;
+
+    gap:12px;
+
+    margin-top:20px;
+}
+
+.card{
+    background:
+        rgba(246,221,214,.35);
+
+    border:
+        1px solid #e9cfc6;
+
+    border-radius:10px;
+
+    padding:15px;
+
+    box-shadow:
+        0 3px 10px
+        rgba(100,60,50,.04);
+}
+
+.card-icon{
+    font-size:21px;
+}
+
+.card h4{
+    color:#8d5367;
+
+    margin:
+        6px
+        0
+        4px;
+
+    font-size:14px;
+}
+
+.card p{
+    font-size:11.5px;
+
+    line-height:1.65;
+
+    margin:0;
+}
+
+
+/* =========================================
+   FUNNY BOX
+========================================= */
+
+.funny-box{
+    margin:20px 0;
+
+    padding:17px;
+
+    background:
+        rgba(250,226,225,.4);
+
+    border-left:
+        3px solid #c77991;
+
+    border-radius:7px;
+
+    font-family:'Cormorant Garamond',serif;
+
+    font-size:19px;
+
+    line-height:1.5;
+
+    color:#78515d;
+}
+
+
+/* =========================================
+   DISTANCE
+========================================= */
+
+.distance{
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:10px;
+
+    margin:25px 0;
+
+    font-family:'Cormorant Garamond',serif;
+
+    font-size:21px;
+
+    color:#8d5368;
+}
+
+.line{
+    width:55px;
+
+    height:1px;
+
+    background:#c992a2;
+
+    position:relative;
+}
+
+.line::after{
+    content:"♥";
+
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    transform:
+        translate(-50%,-55%);
+
+    background:#fffaf1;
+
+    padding:0 5px;
+
+    color:#c87594;
+}
+
+
+/* =========================================
+   FINAL
+========================================= */
+
+.final-page{
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    text-align:center;
+}
+
+.final-heart{
+    font-size:48px;
+
+    color:#c16c89;
+
+    animation:
+        pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+    50%{
+        transform:scale(1.15);
+    }
+}
+
+.signature{
+    margin-top:22px;
+
+    font-family:'Cormorant Garamond',serif;
+
+    font-size:28px;
+
+    color:#8f5268;
+}
+
+
+/* =========================================
+   NAVIGATION — SEPARATE FROM CONTENT
+========================================= */
+
+.book-navigation{
+    height:65px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:16px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #dfc6b4,
+            #d7bba8
+        );
+
+    border-radius:
+        0
+        0
+        10px
+        10px;
+
+    border-top:
+        1px solid
+        rgba(110,70,60,.2);
+
+    box-shadow:
+        inset 0 2px 4px
+        rgba(255,255,255,.25);
+}
+
+.nav-button{
+    border:none;
+
+    background:#bd718b;
+
+    color:white;
+
+    padding:
+        9px
+        23px;
+
+    border-radius:25px;
+
+    cursor:pointer;
+
+    font-family:'Poppins',sans-serif;
+
+    font-size:12px;
+
+    transition:.3s;
+}
+
+.nav-button:hover{
+    background:#a65d77;
+
+    transform:
+        translateY(-2px);
+}
+
+.nav-button:disabled{
+    opacity:.3;
+
+    cursor:not-allowed;
+
+    transform:none;
+}
+
+.page-indicator{
+    font-family:
+        'Cormorant Garamond',
+        serif;
+
+    color:#795563;
+
+    font-size:17px;
+
+    min-width:70px;
+
+    text-align:center;
+}
+
+
+/* =========================================
+   PROGRESS
+========================================= */
+
+.progress-wrap{
+    height:3px;
+
+    background:#d2b5a4;
+
+    width:100%;
+}
+
+.progress{
+    height:100%;
+
+    width:25%;
+
+    background:#bd718c;
+
+    transition:.5s;
+}
+
+
+/* =========================================
+   CONFETTI
+========================================= */
+
+.confetti{
+    position:fixed;
+
+    top:-20px;
+
+    z-index:100;
+
+    animation:
+        fall
+        3s
+        linear
+        forwards;
+}
+
+@keyframes fall{
+    to{
+        transform:
+            translateY(110vh)
+            rotate(720deg);
+    }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media(max-width:700px){
+
+    .intro h1{
+        font-size:42px;
+    }
+
+    .diary-stage{
+        width:210px;
+        height:285px;
+    }
+
+    .diary-stage.enlarged{
+        width:96vw;
+        height:620px;
+    }
+
+    .cover-title{
+        font-size:38px;
+    }
+
+    .cover-name{
+        font-size:24px;
+    }
+
+    .book-container{
+        padding:
+            25px
+            8px
+            20px;
+    }
+
+    .book{
+        padding:6px;
+    }
+
+    .spread{
+        min-height:590px;
+    }
+
+    .diary-page{
+        padding:
+            38px
+            20px
+            45px;
+    }
+
+    .diary-page h2{
+        font-size:32px;
+    }
+
+    .first-page h2{
+        font-size:46px;
+    }
+
+    .first-page .name{
+        font-size:27px;
+    }
+
+    .quote{
+        font-size:17px;
+    }
+
+    .diary-page p{
+        font-size:11.5px;
+        line-height:1.7;
+    }
+
+    .diary-page h3{
+        font-size:24px;
+    }
+
+    .card{
+        padding:11px;
+    }
+
+    .card p{
+        font-size:10.5px;
+    }
+
+    .funny-box{
+        font-size:16px;
+        padding:13px;
+    }
+
+    .distance{
+        font-size:15px;
+    }
+
+    .line{
+        width:25px;
+    }
+
+    .book-navigation{
+        height:58px;
+        gap:8px;
+    }
+
+    .nav-button{
+        padding:
+            8px
+            15px;
+
+        font-size:10px;
+    }
+
+    .page-indicator{
+        font-size:14px;
+        min-width:55px;
+    }
+
+}
+
+
+/* =========================================
+   SMALL PHONES
+========================================= */
+
+@media(max-width:390px){
+
+    .diary-stage.enlarged{
+        height:580px;
+    }
+
+    .spread{
+        min-height:550px;
+    }
+
+    .diary-page{
+        padding:
+            32px
+            15px
+            40px;
+    }
+
+    .diary-page h2{
+        font-size:29px;
+    }
+
+    .first-page h2{
+        font-size:40px;
+    }
+
+    .diary-page p{
+        font-size:10.5px;
+    }
+
+    .cards{
+        gap:8px;
+    }
+
+    .card h4{
+        font-size:11px;
+    }
+
+    .card p{
+        font-size:9.5px;
+    }
+
+}
+/* =========================================
+   SPECIAL ROYAL VINTAGE LETTER
+========================================= */
+
+.letter-screen{
+    position:fixed;
+    inset:0;
+    z-index:100;
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:25px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(75,42,35,.65),
+            rgba(30,20,20,.94)
+        );
+
+    overflow-y:auto;
+
+    opacity:0;
+}
+
+.letter-screen.show{
+    display:flex;
+    animation:letterScreenIn 1s ease forwards;
+}
+
+@keyframes letterScreenIn{
+    to{
+        opacity:1;
+    }
+}
+
+.scroll-hint{
+    position:absolute;
+    top:25px;
+    left:0;
+    right:0;
+
+    text-align:center;
+
+    color:#e7c9a7;
+
+    font-family:
+        'Cormorant Garamond',
+        serif;
+
+    font-size:20px;
+
+    letter-spacing:1px;
+}
+
+.royal-scroll{
+    position:relative;
+
+    width:min(720px,92vw);
+
+    margin-top:45px;
+
+    transform:
+        scaleY(.08)
+        scaleX(.9);
+
+    opacity:0;
+
+    transform-origin:center;
+
+}
+
+.letter-screen.show .royal-scroll{
+    animation:
+        scrollOpen
+        1.8s
+        cubic-bezier(.2,.8,.15,1)
+        .3s
+        forwards;
+}
+
+@keyframes scrollOpen{
+
+    0%{
+        transform:
+            scaleY(.08)
+            scaleX(.9);
+
+        opacity:0;
+    }
+
+    55%{
+        transform:
+            scaleY(1.03)
+            scaleX(1);
+
+        opacity:1;
+    }
+
+    75%{
+        transform:
+            scaleY(.98)
+            scaleX(1);
+    }
+
+    100%{
+        transform:
+            scaleY(1)
+            scaleX(1);
+
+        opacity:1;
+    }
+}
+
+
+/* PAPER */
+
+.scroll-paper{
+
+    position:relative;
+
+    max-height:76vh;
+
+    overflow-y:auto;
+
+    padding:
+        60px
+        65px
+        70px;
+
+    background:
+
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(120,75,40,.07),
+            transparent 25%
+        ),
+
+        radial-gradient(
+            circle at 80% 70%,
+            rgba(120,75,40,.06),
+            transparent 30%
+        ),
+
+        #ead8b8;
+
+    border:
+        1px solid
+        #b99a6d;
+
+    box-shadow:
+        0 25px 55px
+        rgba(0,0,0,.35),
+
+        inset 0 0 45px
+        rgba(100,65,30,.12);
+
+}
+
+
+/* Paper aged edges */
+
+.scroll-paper::before{
+    content:"";
+
+    position:absolute;
+
+    inset:8px;
+
+    border:
+        1px solid
+        rgba(120,82,45,.4);
+
+    pointer-events:none;
+}
+
+
+/* RODS */
+
+.scroll-rod{
+
+    position:absolute;
+
+    left:-18px;
+    right:-18px;
+
+    height:25px;
+
+    border-radius:50px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #8d623b,
+            #c0935d,
+            #704b2d,
+            #ad7e4d
+        );
+
+    box-shadow:
+        0 6px 15px
+        rgba(0,0,0,.35);
+
+    z-index:10;
+}
+
+.top-rod{
+    top:-10px;
+}
+
+.bottom-rod{
+    bottom:-10px;
+}
+
+.scroll-rod span{
+    position:absolute;
+
+    width:32px;
+    height:32px;
+
+    top:-4px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            #d3a86d,
+            #704b2d
+        );
+
+    box-shadow:
+        inset 0 2px 3px
+        rgba(255,255,255,.3);
+}
+
+.top-rod span{
+    left:-7px;
+}
+
+.bottom-rod span{
+    right:-7px;
+}
+
+
+/* LETTER */
+
+.letter-content{
+
+    position:relative;
+
+    z-index:2;
+
+    color:#4d392e;
+
+    font-family:
+        'Cormorant Garamond',
+        serif;
+
+    font-size:20px;
+
+    line-height:1.65;
+
+}
+
+.letter-date{
+
+    text-align:right;
+
+    font-size:16px;
+
+    font-style:italic;
+
+    margin-bottom:25px;
+
+    color:#795b43;
+}
+
+.letter-title{
+
+    text-align:center;
+
+    font-size:42px;
+
+    font-weight:600;
+
+    color:#5e422f;
+
+    margin-bottom:10px;
+}
+
+.letter-line{
+
+    width:120px;
+
+    height:1px;
+
+    background:#987450;
+
+    margin:
+        0 auto
+        35px;
+}
+
+.letter-content p{
+
+    margin-bottom:20px;
+}
+
+.deep-line{
+
+    text-align:center;
+
+    font-size:26px;
+
+    font-weight:600;
+
+    font-style:italic;
+
+    color:#69462f;
+
+    margin:
+        30px
+        auto;
+
+    max-width:600px;
+}
+
+.final-letter-line{
+
+    margin-top:35px;
+}
+
+.letter-signature{
+
+    text-align:right;
+
+    font-size:26px;
+
+    font-style:italic;
+
+    margin-top:35px;
+
+    color:#63452f;
+}
+
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+    .scroll-hint{
+        font-size:16px;
+        top:12px;
+    }
+
+    .royal-scroll{
+        width:94vw;
+        margin-top:40px;
+    }
+
+    .scroll-paper{
+        max-height:78vh;
+
+        padding:
+            45px
+            28px
+            55px;
+    }
+
+    .letter-content{
+        font-size:17px;
+        line-height:1.6;
+    }
+
+    .letter-title{
+        font-size:34px;
+    }
+
+    .deep-line{
+        font-size:22px;
+    }
+
+    .letter-signature{
+        font-size:22px;
+    }
+
+    .scroll-rod{
+        left:-10px;
+        right:-10px;
+    }
+
+}
+</style>
+</head>
+
+
+<body>
+
+
+<!-- FLOATING HEARTS -->
+
+<div class="heart" style="left:7%;animation-delay:1s;">♡</div>
+<div class="heart" style="left:18%;animation-delay:3s;">♥</div>
+<div class="heart" style="left:34%;animation-delay:0s;">♡</div>
+<div class="heart" style="left:52%;animation-delay:2s;">♥</div>
+<div class="heart" style="left:70%;animation-delay:4s;">♡</div>
+<div class="heart" style="left:88%;animation-delay:1.5s;">♥</div>
+
+
+<!-- =========================================
+     OPENING
+========================================= -->
+
+<section class="opening" id="opening">
+
+    <div class="intro">
+
+        <div class="small">
+            A little something for you
+        </div>
+
+        <h1>
+            Happy Birthday,<br>
+            My Dear Girl 🎀
+        </h1>
+
+        <p>
+            Normal sa birthday wish bhej deta...
+            <br>
+            but obviously,
+            <b>tu normal thodi hai.</b>
+        </p>
+
+
+        <div
+            class="diary-stage"
+            id="diaryStage"
+            onclick="openDiary()"
+        >
+
+            <div class="diary">
+
+                <div class="diary-cover">
+
+                    <div class="cover-content">
+
+                        <div class="cover-mini">
+                            A Little Birthday Story
+                        </div>
+
+                        <div class="cover-title">
+                            Happy<br>
+                            Birthday
+                        </div>
+
+                        <div class="cover-name">
+                            Kritika Thakur
+                        </div>
+
+                        <div class="cover-date">
+                            22 • 08 • 2003
+                        </div>
+
+                        <div class="cover-symbol">
+                            ♡
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <p
+            style="
+            font-size:10px;
+            letter-spacing:3px;
+            text-transform:uppercase;
+            "
+        >
+            TAP THE DIARY TO OPEN
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     ACTUAL DIARY
+========================================= -->
+
+<section
+    class="book-container"
+    id="bookContainer"
+>
+
+    <div class="book-area">
+
+        <div class="book">
+
+            <!-- Progress is ABOVE the pages -->
+            <div class="progress-wrap">
+                <div
+                    class="progress"
+                    id="progress"
+                ></div>
+            </div>
+
+
+            <!-- DOUBLE PAGE SPREAD -->
+
+            <div
+                class="spread"
+                id="spread"
+            >
+
+
+                <!-- =============================
+                     LEFT PAGE
+                ============================== -->
+
+                <article
+                    class="diary-page left-page first-page"
+                    id="leftPage"
+                >
+
+                    <div class="birthday">
+                        22 • 08 • 2003
+                    </div>
+
+                    <h2>
+                        Happy Birthday
+                    </h2>
+
+                    <div class="name">
+                        Kritika Thakur 🎀
+                    </div>
+
+                    <div class="quote">
+
+                        "Pata nahi kab tu
+                        ek normal person se<br>
+                        someone actually special
+                        ban gayi."
+
+                    </div>
+
+                    <div class="cover-bottom">
+                        ♡ ✨ 🎀 ✨ ♡
+                    </div>
+
+                    <p style="margin-top:25px;">
+
+                        Socha tha simple sa wish karunga...
+                        <br>
+
+                        phir yaad aaya ki madam
+                        simple cheezon ke liye
+                        <br>
+
+                        bani hi nahi hain. 😂
+
+                    </p>
+
+                </article>
+
+
+                <!-- =============================
+                     RIGHT PAGE
+                ============================== -->
+
+                <article
+                    class="diary-page right-page"
+                    id="rightPage"
+                >
+
+                    <div class="page-number">
+                        PAGE II · HOW WE EVEN GOT HERE
+                    </div>
+
+                    <h2>
+                        Pehle toh tu accept kar leti request.
+                    </h2>
+
+                    <p>
+
+                        Technically iss story ka thoda credit
+                        <span class="highlight">Kashish</span>
+                        ko bhi jaata hai.
+
+                        Uski wajah se hum dono ko ek dusre
+                        ko jaanne ka chance mila.
+
+                    </p>
+
+                    <p>
+
+                        Aur phir hum actually baat karne lage,
+                        ek dusre ko samajhne lage...
+
+                        aur pata hi nahi chala kab conversations
+                        thodi zyada important hone lagi.
+
+                    </p>
+
+                    <h3>
+                        But then there was one tiny problem...
+                    </h3>
+
+                    <div class="funny-box">
+
+                        "Madam ne meri request accept karne mein
+                        itne mahine laga diye ki mujhe laga tha
+                        Instagram ka server issue hai." 😂
+
+                    </div>
+
+                    <p>
+
+                        Tu waise bhi sabke saath thodi mature,
+                        reserved aur avoidant type hai.
+
+                        Toh obviously mujhe bhi special treatment
+                        nahi milna tha. 😂
+
+                    </p>
+
+                    <p>
+
+                        But honestly, ab peeche dekh ke funny lagta hai.
+
+                        Kyunki agar us time mujhe pata hota ki
+                        months wait karne ke baad tu itni important
+                        ban jayegi,
+
+                        toh shayad main aur patience se wait karta.
+
+                    </p>
+
+                    <div
+                        class="card"
+                        style="
+                        margin-top:25px;
+                        text-align:center;
+                        "
+                    >
+
+                        <div class="card-icon">
+                            📩
+                        </div>
+
+                        <h4>
+                            Request Acceptance Report
+                        </h4>
+
+                        <p>
+
+                            Status: Finally Accepted ✅<br>
+
+                            Waiting Time: Unnecessarily long 😂<br>
+
+                            Result: Actually worth it ❤️
+
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <!-- =============================
+                     FLIP OVERLAY
+                ============================== -->
+
+                <div
+                    class="flip-page"
+                    id="flipPage"
+                ></div>
+
+            </div>
+
+
+            <!-- =================================
+                 NAVIGATION — OUTSIDE CONTENT
+            ================================== -->
+
+            <div class="book-navigation">
+
+                <button
+                    class="nav-button"
+                    id="prev"
+                    onclick="previousSpread()"
+                    disabled
+                >
+                    ← Back
+                </button>
+
+                <div
+                    class="page-indicator"
+                    id="indicator"
+                >
+                    1 / 2
+                </div>
+
+                <button
+                    class="nav-button"
+                    id="next"
+                    onclick="nextSpread()"
+                >
+                    Next →
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+    <!-- =========================================
+     SPECIAL VINTAGE LETTER
+========================================= -->
+
+<section class="letter-screen" id="letterScreen">
+
+    <div class="scroll-hint">
+        One last thing I wanted to give you...
+    </div>
+
+    <div class="royal-scroll" id="royalScroll">
+
+        <div class="scroll-rod top-rod">
+            <span></span>
+        </div>
+
+        <div class="scroll-paper">
+
+            <div class="letter-content">
+
+                <div class="letter-date">
+                    22 August 2026
+                </div>
+
+                <div class="letter-title">
+                    To My Dear Girl
+                </div>
+
+                <div class="letter-line"></div>
+
+                <p>
+                    Kritika,
+                </p>
+
+                <p>
+                    I don't really know how to put everything I feel for you
+                    into words. Shayad isi liye ye letter itna late aa raha hai.
+                    Kuch feelings aisi hoti hain jinko likhne ke liye sirf
+                    words enough nahi lagte.
+                </p>
+
+                <p>
+                    But today, on your birthday, I want to say it without
+                    overthinking it.
+                </p>
+
+                <p class="deep-line">
+                    I love you. More than I probably know how to explain.
+                </p>
+
+                <p>
+                    Aur ye sirf woh wala “I love you” nahi hai jo kisi moment
+                    mein bol diya aur phir khatam ho gaya. Ye woh feeling hai
+                    jo mere normal days ka part ban chuki hai.
+                </p>
+
+                <p>
+                    Main kaam kar raha hota hoon, apne future ke baare mein
+                    soch raha hota hoon, kisi random jagah pe hota hoon...
+                    aur somehow thoughts tum tak aa hi jaate hain.
+                    Kabhi bina reason ke tum yaad aa jaati ho.
+                </p>
+
+                <p>
+                    Kabhi tumhari koi baat yaad aati hai, kabhi tumhari voice,
+                    kabhi humari conversations, aur kabhi bas ye thought ki
+                    kaash tum iss waqt mere paas hoti.
+                </p>
+
+                <p>
+                    Distance ne ek cheez toh sikha di hai —
+                    kisi ko miss karna sirf uske saath na hone ka naam nahi hai.
+                    It's carrying a person with you even when they're not
+                    physically there.
+                </p>
+
+                <p>
+                    Aur main tumhe waise hi carry karta hoon.
+                    Mere thoughts mein, meri plans mein, mere future ke
+                    chhote-chhote ideas mein.
+                </p>
+
+                <p class="deep-line">
+                    I miss you. A lot more than I usually tell you.
+                </p>
+
+                <p>
+                    Mujhe pata hai abhi Shimla aur Bangalore ke beech ka
+                    distance kabhi kabhi unfair lagta hai.
+                    Kabhi patience test hota hai, kabhi loneliness feel hoti hai,
+                    aur kabhi mann karta hai ki bas sab kuch simple hota.
+                </p>
+
+                <p>
+                    But I don't want us to be scared of that.
+                </p>
+
+                <p>
+                    Mujhe yakeen hai ki hum phir milenge.
+                    Aur sirf milenge nahi —
+                    I want to build a life where we don't have to keep
+                    counting the distance between us.
+                </p>
+
+                <p>
+                    Ek din main tumhe Bangalore le aaunga.
+                    Phir ye “Shimla se Bangalore” wala distance sirf ek old
+                    chapter hoga jo hum dono yaad karke smile karenge.
+                </p>
+
+                <p>
+                    Aur haan, usmein thoda patience lagega.
+                    Things take time.
+                    Careers take time.
+                    Life takes time.
+                    Relationships take time.
+                </p>
+
+                <p>
+                    But I don't mind waiting for something that I genuinely
+                    believe in.
+                </p>
+
+                <p>
+                    I want us to become each other's strength.
+                    Jab tum tired ho, I want you to know I'm there.
+                    Jab main lose track karun, I want you to remind me
+                    why I'm doing all of this.
+                </p>
+
+                <p>
+                    Main chahta hoon ki hum dono individually bhi grow karein.
+                    Tum apne dreams ke liye grow karo.
+                    Main apne dreams ke liye grow karun.
+                    Aur phir bhi, somewhere along the way,
+                    hum ek dusre ko choose karte rahein.
+                </p>
+
+                <p class="deep-line">
+                    I want to watch you become the person you always wanted to be.
+                </p>
+
+                <p>
+                    Aur main promise nahi karunga ki main hamesha perfect rahunga.
+                    I won't.
+                    Main bhi galtiyan karunga, kabhi stupid hounga,
+                    kabhi cheezein samajhne mein time lagaunga.
+                </p>
+
+                <p>
+                    But I can promise you one thing —
+                    I'll keep trying to become better.
+                    For myself, for my future, and for the people I love.
+                </p>
+
+                <p>
+                    Tumne mere birthday pe jo letter mujhe diya tha,
+                    uski value mere liye shayad tum realise bhi nahi karti.
+                    It meant a lot to me.
+                </p>
+
+                <p>
+                    Aur honestly, mujhe thoda regret hai ki main tumhe
+                    physical letter nahi de paaya.
+                </p>
+
+                <p>
+                    Isliye aaj ye digital letter sirf ek beginning hai.
+                    Ek din tumhe proper handwritten letter milega.
+                    Aisa letter jo main khud likhunga,
+                    pages pe pages.
+                </p>
+
+                <p>
+                    Aur haan, agar zarurat padi toh blood se bhi likh dunga.
+                    Not because a letter needs blood,
+                    but because sometimes I want you to know how seriously
+                    I mean the things I say.
+                </p>
+
+                <p>
+                    You deserve the best.
+                    Not someone who just says he loves you,
+                    but someone who works on himself enough
+                    to actually deserve you.
+                </p>
+
+                <p class="deep-line">
+                    So I'll become that person.
+                </p>
+
+                <p>
+                    Main perfect banne ka promise nahi karta.
+                    But I'll become the best version of myself
+                    that I possibly can.
+                </p>
+
+                <p>
+                    The kind of man who can stand beside you,
+                    not above you.
+                    The kind of man who supports your growth,
+                    protects your peace,
+                    respects your dreams,
+                    and stays when things aren't easy.
+                </p>
+
+                <p>
+                    Because I don't want to just be someone you love.
+                    I want to be someone you can rely on.
+                </p>
+
+                <p>
+                    I want us to look back at this phase someday and say,
+                    “We actually made it through all of that.”
+                </p>
+
+                <p>
+                    And when that day comes,
+                    I'll probably remind you that once upon a time
+                    you took months just to accept my request.
+                </p>
+
+                <p>
+                    So yes, Cutu.
+                    Take your time.
+                    Grow.
+                    Dream.
+                    Become everything you're supposed to become.
+                </p>
+
+                <p>
+                    I'll be doing the same.
+                </p>
+
+                <p class="deep-line">
+                    And somewhere between all that growing,
+                    I'll still be right here.
+                </p>
+
+                <p>
+                    Missing you.
+                    Thinking about you.
+                    Working for the future.
+                    And waiting for the day when I don't have to miss you
+                    from another city anymore.
+                </p>
+
+                <p>
+                    Happy Birthday, Kritika.
+                </p>
+
+                <p>
+                    Thank you for coming into my life in the most unexpected
+                    way possible.
+                </p>
+
+                <p>
+                    And thank you for becoming someone I can genuinely say
+                    I love.
+                </p>
+
+                <p class="deep-line final-letter-line">
+                    Until we meet again,
+                    keep a little faith in us.
+                </p>
+
+                <div class="letter-signature">
+                    Always yours,<br>
+                    The person who is still waiting<br>
+                    for that same girl who took months to accept him.
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="scroll-rod bottom-rod">
+            <span></span>
+        </div>
+
+    </div>
+
+</section>
+
+</section>
+
+
+<script>
+
+/* =========================================
+   DATA / SPREADS
+========================================= */
+
+/*
+   Spread 0:
+   Page 1 + Page 2
+
+   Spread 1:
+   Page 3 + Page 4
+*/
+
+const spreads = [
+
+    {
+
+        left: `
+
+            <div class="birthday">
+                22 • 08 • 2003
+            </div>
+
+            <h2>
+                Happy Birthday
+            </h2>
+
+            <div class="name">
+                Kritika Thakur 🎀
+            </div>
+
+            <div class="quote">
+
+                "Pata nahi kab tu
+                ek normal person se<br>
+                someone actually special
+                ban gayi."
+
+            </div>
+
+            <div class="cover-bottom">
+                ♡ ✨ 🎀 ✨ ♡
+            </div>
+
+            <p style="margin-top:25px;">
+
+                Socha tha simple sa wish karunga...
+                <br>
+
+                phir yaad aaya ki madam
+                simple cheezon ke liye
+                <br>
+
+                bani hi nahi hain. 😂
+
+            </p>
+
+        `,
+
+        right: `
+
+            <div class="page-number">
+                PAGE II · HOW WE EVEN GOT HERE
+            </div>
+
+            <h2>
+                Pehle toh tu accept kar leti request.
+            </h2>
+
+            <p>
+
+                Technically iss story ka thoda credit
+                <span class="highlight">Kashish</span>
+                ko bhi jaata hai.
+
+                Uski wajah se hum dono ko ek dusre
+                ko jaanne ka chance mila.
+
+            </p>
+
+            <p>
+
+                Aur phir hum actually baat karne lage,
+                ek dusre ko samajhne lage...
+
+                aur pata hi nahi chala kab conversations
+                thodi zyada important hone lagi.
+
+            </p>
+
+            <h3>
+                But then there was one tiny problem...
+            </h3>
+
+            <div class="funny-box">
+
+                "Madam ne meri request accept karne mein
+                itne mahine laga diye ki mujhe laga tha
+                Instagram ka server issue hai." 😂
+
+            </div>
+
+            <p>
+
+                Tu waise bhi sabke saath thodi mature,
+                reserved aur avoidant type hai.
+
+                Toh obviously mujhe bhi special treatment
+                nahi milna tha. 😂
+
+            </p>
+
+            <p>
+
+                But honestly, ab peeche dekh ke funny lagta hai.
+
+                Kyunki agar us time mujhe pata hota ki
+                months wait karne ke baad tu itni important
+                ban jayegi,
+
+                toh shayad main aur patience se wait karta.
+
+            </p>
+
+            <div class="card"
+                 style="
+                 margin-top:25px;
+                 text-align:center;
+                 ">
+
+                <div class="card-icon">
+                    📩
+                </div>
+
+                <h4>
+                    Request Acceptance Report
+                </h4>
+
+                <p>
+
+                    Status: Finally Accepted ✅<br>
+
+                    Waiting Time: Unnecessarily long 😂<br>
+
+                    Result: Actually worth it ❤️
+
+                </p>
+
+            </div>
+
+        `
+
+    },
+
+    {
+
+        left: `
+
+            <div class="page-number">
+                PAGE III · THE LITTLE THINGS
+            </div>
+
+            <h2>
+                Things I don't always say.
+            </h2>
+
+            <p>
+
+                Honestly, main har baar express nahi karta,
+                but tu mere liye kaafi matter karti hai.
+
+                Aur shayad isi wajah se distance
+                kabhi-kabhi thoda zyada feel hota hai.
+
+            </p>
+
+            <div class="distance">
+
+                <span>
+                    🏔️ Shimla
+                </span>
+
+                <div class="line"></div>
+
+                <span>
+                    ✈️ Bangalore
+                </span>
+
+            </div>
+
+            <p>
+
+                Abhi hum dono alag cities mein hain,
+                aur haan...
+                <b>I do miss you.</b>
+
+                Kabhi random time pe bas mann karta hai
+                ki tu saamne hoti aur hum bina kisi reason ke
+                baith ke bakchodi kar rahe hote.
+
+            </p>
+
+
+            <div class="card">
+
+                <div class="card-icon">
+                    🧣
+                </div>
+
+                <h4>
+                    Tera Handkerchief
+                </h4>
+
+                <p>
+
+                    Tera handkerchief ,the best thing that reminds me of you. ❤️
+
+                    esa lgta h tera hath pkda hua h, tu mere sath h or m 100 wali streak poori kr rha hu❤️
+
+                
+
+                </p>
+
+            </div>
+
+        `,
+
+        right: `
+
+            <div class="page-number">
+                PAGE III · THE LITTLE THINGS
+            </div>
+
+            <h2>
+                And then there are these...
+            </h2>
+
+
+            <div class="cards">
+
+                <div class="card">
+
+                    <div class="card-icon">
+                        🚌
+                    </div>
+
+                    <h4>
+                        That Last Meeting
+                    </h4>
+
+                    <p>
+
+                        Last time dono emotional ho gaye the...
+
+                        aur madam bus mein window ke bahar
+                        tak nahi dekh paa rahi thi. 😂
+
+                        Cute tha,
+                        but thoda funny bhi.
+
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-icon">
+                        🎀
+                    </div>
+
+                    <h4>
+                        Cutu / Kittu / sundru
+                    </h4>
+
+                    <p>
+
+                        Nickname chahe koi bhi ho,
+                        person ek hi hai.
+
+                        Meri favourite annoying human. ❤️
+                        bs thoda sone dediya kr
+
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-icon">
+                        🌙
+                    </div>
+
+                    <h4>
+                        The Distance
+                    </h4>
+
+                    <p>
+
+                        Distance annoying hai,
+                        but I don't think it's bigger than
+                        what two people actually feel
+                        for each other.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="funny-box">
+
+                Aur haan madam...
+
+                next time milenge toh please bus mein
+                window ke bahar dekh lena.
+
+                Itna emotional hona jroori nahi hai. ❤️
+
+            </div>
+
+        `
+
+    },
+
+    {
+
+        left: `
+
+            <div class="page-number">
+                PAGE IV · ONE LAST THING
+            </div>
+
+            <h2>
+                So... about us.
+            </h2>
+
+            <p>
+
+                Mujhe pata hai abhi officially
+                kuch label nahi hai,
+
+                aur honestly mujhe usko force bhi nahi karna.
+
+                I actually like the way things are going.
+
+            </p>
+
+            <p>
+
+                But ek cheez mujhe genuinely lagti hai —
+
+                <b>
+                    we're meant to be
+                    in each other's lives.
+                </b>
+
+            </p>
+
+            <p>
+
+                Shimla aur Bangalore ke beech distance hai,
+
+                but distance koi permanent problem nahi hoti.
+
+                Agar dono log ek dusre ko genuinely choose karte hain,
+
+                toh cities change ho sakti hain,
+                situations change ho sakti hain...
+
+                but intention same reh sakta hai.
+
+            </p>
+
+        `,
+
+        right: `
+
+            <div class="final-page">
+
+                <div class="final-heart">
+                    ♡
+                </div>
+
+                <div class="page-number">
+                    THE LAST PAGE
+                </div>
+
+                <p>
+
+                    So I don't want you to ever think ki
+                    long distance ki wajah se kuch impossible hai.
+
+                    We have time.
+                    We have each other.
+
+                    Baaki cheezein eventually figure out
+                    ho jaati hain.
+
+                </p>
+
+
+                <div class="funny-box">
+
+                    Aur haan kutti...
+
+                    unchi avaz m baat na kre 
+                    its harmful for the baby(me) ❤️
+
+                </div>
+
+
+                <p>
+
+                    Happy Birthday, Kritika.
+
+                    I hope this year gives you everything
+                    you've been working for,
+
+                    peace, happiness,
+                    good people and a lot of reasons to smile.
+
+                </p>
+
+
+                <p>
+
+                    And selfishly...
+
+                    I hope iss saal mein
+                    <b>thoda zyada "us"</b> bhi ho.
+
+                </p>
+
+
+                <div class="signature">
+
+                    Yours,
+
+                    <br>
+
+                    <span style="font-size:19px;">
+
+                        woh banda jiski request accept karne mein
+                        tune unnecessarily months laga diye. 🤍
+
+                    </span>
+
+                </div>
+
+            </div>
+
+        `
+
+    }
+
+];
+
+
+/* =========================================
+   VARIABLES
+========================================= */
+
+let currentSpread = 0;
+let isAnimating = false;
+let diaryOpened = false;
+
+const leftPage =
+    document.getElementById("leftPage");
+
+const rightPage =
+    document.getElementById("rightPage");
+
+const flipPage =
+    document.getElementById("flipPage");
+
+const diaryStage =
+    document.getElementById("diaryStage");
+
+const opening =
+    document.getElementById("opening");
+
+const bookContainer =
+    document.getElementById("bookContainer");
+
+const nextBtn =
+    document.getElementById("next");
+
+const prevBtn =
+    document.getElementById("prev");
+
+const indicator =
+    document.getElementById("indicator");
+
+const progress =
+    document.getElementById("progress");
+
+
+/* =========================================
+   OPEN DIARY
+========================================= */
+
+function openDiary(){
+
+    if(diaryOpened) return;
+
+    diaryOpened = true;
+
+    /*
+       First zoom the small diary
+    */
+
+    diaryStage.classList.add("enlarged");
+
+
+    /*
+       Then open cover
+    */
+
+    setTimeout(()=>{
+
+        const cover =
+            document.querySelector(
+                ".diary-cover"
+            );
+
+        cover.style.transform =
+            "rotateY(-165deg)";
+
+        launchConfetti();
+
+    },700);
+
+
+    /*
+       Then reveal real diary
+    */
+
+    setTimeout(()=>{
+
+        opening.classList.add("hide");
+
+        bookContainer.classList.add("show");
+
+    },1450);
+
+}
+
+
+/* =========================================
+   LOAD SPREAD
+========================================= */
+
+function loadSpread(){
+
+    leftPage.innerHTML =
+        spreads[currentSpread].left;
+
+    rightPage.innerHTML =
+        spreads[currentSpread].right;
+
+
+    indicator.innerHTML =
+        `${currentSpread + 1} / ${spreads.length}`;
+
+
+    prevBtn.disabled =
+        currentSpread === 0;
+
+
+    if(
+        currentSpread ===
+        spreads.length - 1
+    ){
+
+        nextBtn.innerHTML =
+            "Replay ♡";
+
+    }else{
+
+        nextBtn.innerHTML =
+            "Next →";
+
+    }
+
+
+    progress.style.width =
+        (
+            (
+                currentSpread + 1
+            )
+            /
+            spreads.length
+        )
+        *
+        100
+        +
+        "%";
+}
+
+
+/* =========================================
+   NEXT SPREAD
+========================================= */
+function nextSpread(){
+
+    if(isAnimating) return;
+
+    /*
+       Last diary spread ke baad
+       special letter open hoga.
+    */
+
+    if(currentSpread === spreads.length - 1){
+
+        const letterScreen =
+            document.getElementById("letterScreen");
+
+        letterScreen.classList.add("show");
+
+        launchConfetti();
+
+        return;
+    }
+
+    isAnimating = true;
+
+    flipPage.className =
+        "flip-page active-next";
+
+    setTimeout(()=>{
+
+        currentSpread++;
+
+        loadSpread();
+
+    },420);
+
+    setTimeout(()=>{
+
+        flipPage.className =
+            "flip-page";
+
+        isAnimating = false;
+
+    },850);
+
+}
+
+/* =========================================
+   PREVIOUS SPREAD
+========================================= */
+
+function previousSpread(){
+
+    if(isAnimating) return;
+
+    if(currentSpread === 0) return;
+
+    isAnimating = true;
+
+
+    flipPage.className =
+        "flip-page active-back";
+
+
+    setTimeout(()=>{
+
+        currentSpread--;
+
+        loadSpread();
+
+    },420);
+
+
+    setTimeout(()=>{
+
+        flipPage.className =
+            "flip-page";
+
+        isAnimating = false;
+
+    },850);
+
+}
+
+
+/* =========================================
+   CONFETTI
+========================================= */
+
+function launchConfetti(){
+
+    const symbols = [
+        "♥",
+        "♡",
+        "✦",
+        "✧",
+        "🎀"
+    ];
+
+
+    for(
+        let i=0;
+        i<35;
+        i++
+    ){
+
+        const item =
+            document.createElement(
+                "div"
+            );
+
+
+        item.className =
+            "confetti";
+
+
+        item.innerHTML =
+            symbols[
+                Math.floor(
+                    Math.random()
+                    *
+                    symbols.length
+                )
+            ];
+
+
+        item.style.left =
+            Math.random()
+            *
+            100
+            +
+            "vw";
+
+
+        item.style.fontSize =
+            (
+                10
+                +
+                Math.random()
+                *
+                14
+            )
+            +
+            "px";
+
+
+        item.style.animationDuration =
+            (
+                2
+                +
+                Math.random()
+                *
+                2
+            )
+            +
+            "s";
+
+
+        document.body.appendChild(item);
+
+
+        setTimeout(
+            ()=>{
+                item.remove();
+            },
+            4000
+        );
+
+    }
+
+}
+
+
+/* =========================================
+   KEYBOARD
+========================================= */
+
+document.addEventListener(
+    "keydown",
+    (e)=>{
+
+        if(e.key === "ArrowRight"){
+            nextSpread();
+        }
+
+        if(e.key === "ArrowLeft"){
+            previousSpread();
+        }
+
+    }
+);
+
+
+/* =========================================
+   SWIPE
+========================================= */
+
+let touchStartX = 0;
+
+document.addEventListener(
+    "touchstart",
+    (e)=>{
+
+        touchStartX =
+            e.changedTouches[0].screenX;
+
+    }
+);
+
+document.addEventListener(
+    "touchend",
+    (e)=>{
+
+        const touchEndX =
+            e.changedTouches[0].screenX;
+
+
+        if(
+            touchStartX - touchEndX > 50
+        ){
+
+            nextSpread();
+
+        }
+
+
+        if(
+            touchEndX - touchStartX > 50
+        ){
+
+            previousSpread();
+
+        }
+
+    }
+);
+
+
+/* =========================================
+   INITIAL
+========================================= */
+
+loadSpread();
+
+</script>
+
+</body>
+</html>
